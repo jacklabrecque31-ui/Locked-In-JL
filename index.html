@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Locked-in HEC</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#18212c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Locked-in">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="lock" id="lock" hidden>
+  <form id="lockform" autocomplete="on">
+    <h1>Locked-in</h1>
+    <p>Session A2026 · HEC Montréal. Entre ton mot de passe pour déverrouiller tes notes.</p>
+    <input type="text" name="username" value="locked-in" autocomplete="username" hidden>
+    <input type="password" id="pw" name="password" autocomplete="current-password" placeholder="Mot de passe" required>
+    <label class="chk"><input type="checkbox" id="remember" checked> Rester connecté sur cet appareil</label>
+    <div class="err" id="lockerr" role="alert"></div>
+    <button class="btn-main" id="unlockbtn" type="submit">Déverrouiller</button>
+  </form>
+</section>
+
+<div class="app" id="app" hidden>
+  <aside class="rail">
+    <a class="brand" href="#agenda">Locked-in<small>Session A2026 · HEC Montréal</small></a>
+    <nav class="nav" id="nav" aria-label="Navigation"></nav>
+    <div class="status" id="status"></div>
+  </aside>
+  <main><div class="wrap" id="view"></div></main>
+</div>
+
+<div class="lock" id="loading"><p>Chargement…</p></div>
+<dialog id="zoom" aria-label="Diapo agrandie"><img alt=""><p></p></dialog>
+<script src="app.js"></script>
+</body>
+</html>

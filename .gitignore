@@ -1,0 +1,4 @@
+node_modules/
+*.plain.json
+/plain/
+.DS_Store
