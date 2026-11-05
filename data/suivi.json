@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-01T14:10:00-05:00",
+ "derniereVerif": "2026-11-05T14:55:00-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -10,12 +10,19 @@
  "fichiersVus": {
   "COMP20900": [
    1141237,
+   1277630,
+   1277797,
    1277818,
+   1277851,
    1277931,
+   1277979,
+   1277983,
    1277992,
    1278011,
    1278027,
    1278038,
+   1278052,
+   1278057,
    1278087,
    1278091,
    1278130,
@@ -52,6 +59,7 @@
    1478623,
    1478647,
    1478652,
+   1478656,
    1478691,
    1478693,
    1478694,
@@ -213,7 +221,10 @@
    1675199,
    1675200,
    1675201,
-   1675202
+   1675202,
+   1692254,
+   1692255,
+   1692256
   ],
   "ENTR11000": [
    1238065,
@@ -317,7 +328,11 @@
    1674851,
    1674852,
    1674853,
-   1674854
+   1674854,
+   1693925,
+   1693931,
+   1693934,
+   1693937
   ]
  },
  "seances": {
@@ -480,11 +495,16 @@
   "MATH10620-S9": {
    "statut": "pret",
    "ordre": 9
+  },
+  "COMP20900-S9": {
+   "statut": "pret",
+   "ordre": 9
   }
  },
  "journal": [
   "2026-10-25 : inventaire initial, 23 séances prêtes",
   "2026-11-01 : passage au site GitHub Pages",
-  "2026-11-01 : COMP20900-S8, COMP20929-S08-S09, MATH10620-S8, MATH10620-S9, ENTR11000-S5, ENTR11000-S6, ENTR11000-S9 ajoutées (rattrapage manuel)"
+  "2026-11-01 : COMP20900-S8, COMP20929-S08-S09, MATH10620-S8, MATH10620-S9, ENTR11000-S5, ENTR11000-S6, ENTR11000-S9 ajoutées (rattrapage manuel)",
+  "2026-11-05 : COMP20900-S9"
  ]
 }
