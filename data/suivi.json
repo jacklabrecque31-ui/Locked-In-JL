@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-08T15:25:24-05:00",
+ "derniereVerif": "2026-11-08T15:25:59-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -506,6 +506,7 @@
   "2026-11-01 : passage au site GitHub Pages",
   "2026-11-01 : COMP20900-S8, COMP20929-S08-S09, MATH10620-S8, MATH10620-S9, ENTR11000-S5, ENTR11000-S6, ENTR11000-S9 ajoutées (rattrapage manuel)",
   "2026-11-05 : COMP20900-S9",
-  "2026-11-08 : MATH10620-S9 et ENTR11000-S8 enrichies (diapos de séance)"
+  "2026-11-08 : MATH10620-S9 et ENTR11000-S8 enrichies (diapos de séance)",
+  "2026-11-08 : rien de nouveau"
  ]
 }
