@@ -47,12 +47,13 @@ for (const e of events) {
   const uid = e.UID?.v || "";
   const titleFull = unesc(e.SUMMARY?.v).trim();
   const title = titleFull.replace(/\s*\[[^\]]*\]\s*$/, ""); // retire « [Nom du cours] »
+  const contexte = titleFull.match(/\[([^\]]*)\]\s*$/)?.[1];
   const link = e.URL?.v || "";
   const canvas = +(link.match(/\/courses\/(\d+)/)?.[1] || unesc(e.DESCRIPTION?.v).match(/\/courses\/(\d+)/)?.[1] || 0) || null;
   const w = when(e.DTSTART);
   if (!w.date || w.date < since) continue;
   const det = unesc(e.DESCRIPTION?.v).replace(/\s+/g, " ").trim().slice(0, 400);
-  items.push({ uid, date: w.date, heure: w.heure && w.heure !== "00:00" ? w.heure : undefined, canvas, type: kind(uid, title), titre: title, details: det || undefined, lien: link || undefined });
+  items.push({ uid, date: w.date, heure: w.heure && w.heure !== "00:00" ? w.heure : undefined, canvas, contexte, type: kind(uid, title), titre: title, details: det || undefined, lien: link || undefined });
 }
 items.sort((a, b) => (a.date + (a.heure || "")).localeCompare(b.date + (b.heure || "")));
 

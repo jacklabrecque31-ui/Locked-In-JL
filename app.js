@@ -80,17 +80,41 @@ const cc = (id) => `--cc:var(--c-${id},var(--accent))`;
 const TYPES = { examen: "Examen", remise: "À remettre", quiz: "Quiz", lecture: "À lire / visionner", preparation: "Préparation", exercices: "Exercices", seance: "Cours", autre: "Autre" };
 const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, " ").trim();
 
+function coursDeContexte(ctx) {
+  const t = norm(ctx);
+  if (!t) return undefined;
+  for (const c of S.courses) if (t.includes(norm(c.id))) return c.id;
+  for (const c of S.courses) {
+    const mots = norm(c.nom.split(":")[0]).split(" ").filter((w) => w.length > 3);
+    if (mots.length && mots.every((w) => t.includes(w))) return c.id;
+  }
+  return undefined;
+}
+// Deux items sont le même s'ils tombent le même jour et que l'un des titres prolonge l'autre
+// (ex. « Q7-S08 » et « Q7-S08 (A01) » : le flux du calendrier et ZoneCours nomment parfois un peu différemment).
+function memeItem(a, b) {
+  if (a.date !== b.date || (a.cours && b.cours && a.cours !== b.cours)) return false;
+  const x = norm(a.titre), y = norm(b.titre);
+  if (!x || !y) return false;
+  return x === y || (Math.min(x.length, y.length) >= 6 && (x.startsWith(y) || y.startsWith(x)));
+}
 function agendaItems() {
-  const seen = new Map();
+  const out = [];
   for (const src of ["manuel", "zc", "ics"]) {
-    for (const it of S.agenda[src]?.items || []) {
-      if (!it.date) continue;
+    for (const it0 of S.agenda[src]?.items || []) {
+      if (!it0.date) continue;
+      const it = { ...it0 };
       if (!it.cours && it.canvas) it.cours = S.courses.find((c) => c.canvas === it.canvas)?.id;
-      const key = it.uid || `${it.date}|${norm(it.titre).slice(0, 48)}`;
-      if (!seen.has(key)) seen.set(key, { ...it, key });
+      if (!it.cours && it.contexte) it.cours = coursDeContexte(it.contexte);
+      const dup = out.find((o) => memeItem(o, it));
+      if (dup) { // on garde la première version (manuel > ZoneCours > flux) et on la complète
+        dup.cours ||= it.cours; dup.heure ||= it.heure; dup.lien ||= it.lien; dup.details ||= it.details;
+        continue;
+      }
+      out.push({ ...it, key: it.uid || `${it.date}|${norm(it.titre).slice(0, 48)}` });
     }
   }
-  return [...seen.values()].sort((a, b) => (a.date + (a.heure || "99")).localeCompare(b.date + (b.heure || "99")));
+  return out.sort((a, b) => (a.date + (a.heure || "99")).localeCompare(b.date + (b.heure || "99")));
 }
 const doneSet = () => new Set(ls.get("li-done", []));
 const TODO_TYPES = new Set(["remise", "quiz", "lecture", "preparation", "exercices"]);
