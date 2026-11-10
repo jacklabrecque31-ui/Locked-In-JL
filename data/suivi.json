@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-09T07:53:22-05:00",
+ "derniereVerif": "2026-11-10T07:51:02-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -512,6 +512,7 @@
   "2026-11-05 : COMP20900-S9",
   "2026-11-08 : MATH10620-S9 et ENTR11000-S8 enrichies (diapos de séance)",
   "2026-11-08 : rien de nouveau",
-  "2026-11-09 : COMP20900-S10 ajoutée; COMP20929-S08-S09 enrichie (exercice 6A.1)"
+  "2026-11-09 : COMP20900-S10 ajoutée; COMP20929-S08-S09 enrichie (exercice 6A.1)",
+  "2026-11-10 : rien de nouveau"
  ]
 }
