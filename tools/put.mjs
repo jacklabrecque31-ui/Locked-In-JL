@@ -6,8 +6,9 @@
 //   node tools/put.mjs agenda-manuel <fichier.json> agenda saisi à la main    {maj, items:[…]}
 //   node tools/put.mjs cours <fichier.json>         liste des cours           {cours:[…]}
 //   node tools/put.mjs etat <fichier.json>          état de la vérification   {derniereVerif, fichiersVus, journal}
+//   node tools/put.mjs audio <meta.json> <fichier.mp3>  épisode de balado  {id, cours, titre, description?, duree?, date, seances?:[ids]}
 import { readFileSync } from "node:fs";
-import { putJson, putImage, publicKey } from "./crypto.mjs";
+import { putJson, putImage, publicKey, encryptBytes, writeBin, fileId } from "./crypto.mjs";
 
 const [kind, a, b] = process.argv.slice(2);
 const pub = await publicKey();
@@ -29,6 +30,13 @@ if (kind === "seance") {
   const s = json(a); checkSeance(s);
   const id = `${s.cours}-${s.num}`;
   console.log(await putJson("seance:" + id, { id, ...s }, pub), id);
+} else if (kind === "audio") {
+  const m = json(a);
+  for (const k of ["id", "cours", "titre"]) if (!m[k]) throw new Error(`audio : champ manquant : ${k}`);
+  const path = `aud/${fileId("aud:" + m.id)}.bin`;
+  writeBin(path, await encryptBytes(readFileSync(b), pub));
+  m.url = path; m.date ||= new Date().toISOString().slice(0, 10);
+  console.log(await putJson("audio:" + m.id, m, pub), path);
 } else if (kind === "image") {
   console.log(await putImage(a, readFileSync(b), pub));
 } else if (["agenda-zc", "agenda-manuel", "cours", "etat"].includes(kind)) {

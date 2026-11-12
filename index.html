@@ -1,45 +1,59 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Locked-in HEC</title>
+<title>Locked-in</title>
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#18212c">
+<meta name="theme-color" content="#0e0b1f">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Locked-in">
+<script>try{var t=localStorage.getItem("li-theme");if(t)document.documentElement.dataset.theme=JSON.parse(t)}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <section class="lock" id="lock" hidden>
-  <form id="lockform" autocomplete="on">
+  <form class="lockcard" id="lockform" autocomplete="on">
+    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b3df5"/><stop offset="1" stop-color="#b9a6ff"/></linearGradient></defs><rect width="64" height="64" rx="20" fill="url(#lg)"/><rect x="17" y="29" width="30" height="22" rx="7" fill="#fff"/><path d="M23 29v-5a9 9 0 0 1 18 0v5" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="32" cy="40" r="3.4" fill="#6d4dff"/></svg>
     <h1>Locked-in</h1>
-    <p>Session A2026 · HEC Montréal. Entre ton mot de passe pour déverrouiller tes notes.</p>
+    <p>Tes révisions HEC, à jour chaque matin.</p>
     <input type="text" name="username" value="locked-in" autocomplete="username" hidden>
-    <input type="password" id="pw" name="password" autocomplete="current-password" placeholder="Mot de passe" required>
+    <input class="field" type="password" id="pw" name="password" autocomplete="current-password" placeholder="Mot de passe" required>
     <label class="chk"><input type="checkbox" id="remember" checked> Rester connecté sur cet appareil</label>
     <div class="err" id="lockerr" role="alert"></div>
     <button class="btn-main" id="unlockbtn" type="submit">Déverrouiller</button>
   </form>
 </section>
 
-<div class="app" id="app" hidden>
-  <aside class="rail">
-    <a class="brand" href="#agenda">Locked-in<small>Session A2026 · HEC Montréal</small></a>
-    <nav class="nav" id="nav" aria-label="Navigation"></nav>
-    <div class="status" id="status"></div>
-  </aside>
-  <main><div class="wrap" id="view"></div></main>
+<div class="shell" id="app" hidden>
+  <aside class="side" id="side"></aside>
+  <main id="view"></main>
+  <nav class="tabbar" id="tabbar" aria-label="Navigation principale"></nav>
 </div>
 
-<div class="lock" id="loading"><p>Chargement…</p></div>
-<dialog id="zoom" aria-label="Diapo agrandie"><img alt=""><p></p></dialog>
+<div class="player" id="player" hidden>
+  <button class="pp" id="pp" type="button" aria-label="Lecture"></button>
+  <div style="min-width:0"><div class="t" id="ptitle"></div><input type="range" id="pseek" min="0" max="1000" value="0" aria-label="Position"><div class="tm" id="ptime"></div></div>
+  <button class="sp" id="pspeed" type="button" aria-label="Vitesse de lecture">1×</button>
+  <audio id="audio" preload="none"></audio>
+</div>
+
+<dialog class="viewer" id="viewer" aria-label="Diapos du cours">
+  <div class="vw">
+    <div class="vtop"><button class="vbtn" type="button" data-vclose aria-label="Fermer"></button><div class="t" id="vtitle"></div><span class="count" id="vcount"></span></div>
+    <div class="stage" id="vstage"><button class="vbtn nav prev" type="button" data-vstep="-1" aria-label="Diapo précédente"></button><img id="vimg" alt=""><button class="vbtn nav next" type="button" data-vstep="1" aria-label="Diapo suivante"></button></div>
+    <div class="vbot" id="vstrip"></div>
+  </div>
+</dialog>
+
+<div class="loading" id="loading"><div><div class="spinner"></div>Chargement…</div></div>
 <script src="app.js"></script>
 </body>
 </html>
