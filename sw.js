@@ -1,5 +1,5 @@
 // Hors ligne : les fichiers chiffrés (versionnés par ?v=) sont mis en cache ; le reste passe d'abord par le réseau.
-const C = "li-v2";
+const C = "li-v3";
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 self.addEventListener("fetch", (e) => {

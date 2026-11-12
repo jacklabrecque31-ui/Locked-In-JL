@@ -384,3 +384,6 @@ img.ok { opacity: 1; }
 .setts { padding: 18px; display: grid; gap: 12px; margin-top: 26px; color: var(--muted); font-size: 0.88rem; }
 .setts .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+/* laisse de la place au lecteur quand un balado joue */
+body:has(#player:not([hidden])) main { padding-bottom: 210px; }
+@media (min-width: 960px) { body:has(#player:not([hidden])) main { padding-bottom: 130px; } }
