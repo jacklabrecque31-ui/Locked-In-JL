@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-14T07:51:29-05:00",
+ "derniereVerif": "2026-11-15T07:49:41-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -522,6 +522,7 @@
   "2026-11-11 : rien de nouveau",
   "2026-11-12 : MATH10620-S10 et MATH10620-S11 ajoutées; ENTR11000-S9 enrichie (diapos de séance et atelier pitch)",
   "2026-11-13 : rien de nouveau",
-  "2026-11-14 : COMP20929-S08-S09 enrichie (exercice 6GC.3 et piste de départ pour la question synthèse)"
+  "2026-11-14 : COMP20929-S08-S09 enrichie (exercice 6GC.3 et piste de départ pour la question synthèse)",
+  "2026-11-15 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)"
  ]
 }
