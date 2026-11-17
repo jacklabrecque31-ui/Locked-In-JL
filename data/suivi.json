@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-16T07:50:55-05:00",
+ "derniereVerif": "2026-11-17T07:53:35-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -394,11 +394,11 @@
    "ordre": 6
   },
   "COMP20929-S10-S11": {
-   "statut": "a_venir",
+   "statut": "pret",
    "ordre": 7
   },
   "COMP20929-S12": {
-   "statut": "a_venir",
+   "statut": "pret",
    "ordre": 8
   },
   "ENTR11000-S1": {
@@ -524,6 +524,7 @@
   "2026-11-13 : rien de nouveau",
   "2026-11-14 : COMP20929-S08-S09 enrichie (exercice 6GC.3 et piste de départ pour la question synthèse)",
   "2026-11-15 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)",
-  "2026-11-16 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)"
+  "2026-11-16 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)",
+  "2026-11-17 : COMP20929-S10-S11 et COMP20929-S12 ajoutées; COMP20900-S8 et S9 enrichies (TP2 Mission Ascension); 2 PDF COMP20929 S09 toujours non extraits"
  ]
 }
