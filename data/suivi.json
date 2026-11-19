@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-18T07:51:24-05:00",
+ "derniereVerif": "2026-11-19T07:51:34-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -277,7 +277,8 @@
    1635093,
    1723516,
    1723520,
-   1723543
+   1723543,
+   1754475
   ],
   "MATH10620": [
    292438,
@@ -337,7 +338,8 @@
    1693934,
    1693937,
    1723809,
-   1723811
+   1723811,
+   1751821
   ]
  },
  "seances": {
@@ -406,7 +408,7 @@
    "ordre": 1
   },
   "ENTR11000-S10": {
-   "statut": "a_venir",
+   "statut": "pret",
    "ordre": 10
   },
   "ENTR11000-S11": {
@@ -526,6 +528,7 @@
   "2026-11-15 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)",
   "2026-11-16 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)",
   "2026-11-17 : COMP20929-S10-S11 et COMP20929-S12 ajoutées; COMP20900-S8 et S9 enrichies (TP2 Mission Ascension); 2 PDF COMP20929 S09 toujours non extraits",
-  "2026-11-18 : rien de nouveau côté séances; balado COMP20929-S10-S11 publié (audio complet reconstitué); agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
+  "2026-11-18 : rien de nouveau côté séances; balado COMP20929-S10-S11 publié (audio complet reconstitué); agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
+  "2026-11-19 : ENTR11000-S10 ajoutée (diapos, résumé, QCM, balado en production); balado COMP20929-S12 publié; MATH10620-S10 : nouvelle version des diapos sans changement de fond; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
  ]
 }
