@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-19T07:51:34-05:00",
+ "derniereVerif": "2026-11-20T07:53:42-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -53,6 +53,7 @@
    1478565,
    1478574,
    1478598,
+   1478611,
    1478614,
    1478617,
    1478621,
@@ -119,7 +120,14 @@
    1682201,
    1682206,
    1682210,
-   1682212
+   1682212,
+   1755374,
+   1755376,
+   1755381,
+   1755383,
+   1755384,
+   1755387,
+   1755388
   ],
   "COMP20929": [
    1178487,
@@ -224,7 +232,18 @@
    1675202,
    1692254,
    1692255,
-   1692256
+   1692256,
+   1757193,
+   1757200,
+   1757204,
+   1757208,
+   1757214,
+   1757219,
+   1757224,
+   1757229,
+   1757273,
+   1757277,
+   1757281
   ],
   "ENTR11000": [
    1238065,
@@ -339,7 +358,9 @@
    1693937,
    1723809,
    1723811,
-   1751821
+   1751821,
+   1757520,
+   1757529
   ]
  },
  "seances": {
@@ -510,6 +531,10 @@
   "COMP20900-S10": {
    "statut": "pret",
    "ordre": 10
+  },
+  "COMP20900-S11": {
+   "statut": "pret",
+   "ordre": 11
   }
  },
  "journal": [
@@ -529,6 +554,7 @@
   "2026-11-16 : rien de nouveau (agenda mis à jour; 2 PDF COMP20929 S09 toujours non extraits)",
   "2026-11-17 : COMP20929-S10-S11 et COMP20929-S12 ajoutées; COMP20900-S8 et S9 enrichies (TP2 Mission Ascension); 2 PDF COMP20929 S09 toujours non extraits",
   "2026-11-18 : rien de nouveau côté séances; balado COMP20929-S10-S11 publié (audio complet reconstitué); agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
-  "2026-11-19 : ENTR11000-S10 ajoutée (diapos, résumé, QCM, balado en production); balado COMP20929-S12 publié; MATH10620-S10 : nouvelle version des diapos sans changement de fond; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
+  "2026-11-19 : ENTR11000-S10 ajoutée (diapos, résumé, QCM, balado en production); balado COMP20929-S12 publié; MATH10620-S10 : nouvelle version des diapos sans changement de fond; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
+  "2026-11-20 : COMP20900-S11 ajoutée (flux de trésorerie, diapos, balado en production); COMP20929-S10-S11 enrichie (exercices 16B et 16C.2, final E2021 c); COMP20929-S12 enrichie (illustration Casse-cou); MATH10620-S11 enrichie (diapos de séance); balado ENTR11000-S10 publié; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
  ]
 }
