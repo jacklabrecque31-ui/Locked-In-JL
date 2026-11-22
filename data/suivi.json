@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-21T07:50:13-05:00",
+ "derniereVerif": "2026-11-22T07:53:58-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -127,7 +127,11 @@
    1755383,
    1755384,
    1755387,
-   1755388
+   1755388,
+   1530801,
+   1530837,
+   1763344,
+   1530826
   ],
   "COMP20929": [
    1178487,
@@ -556,6 +560,7 @@
   "2026-11-18 : rien de nouveau côté séances; balado COMP20929-S10-S11 publié (audio complet reconstitué); agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
   "2026-11-19 : ENTR11000-S10 ajoutée (diapos, résumé, QCM, balado en production); balado COMP20929-S12 publié; MATH10620-S10 : nouvelle version des diapos sans changement de fond; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
   "2026-11-20 : COMP20900-S11 ajoutée (flux de trésorerie, diapos, balado en production); COMP20929-S10-S11 enrichie (exercices 16B et 16C.2, final E2021 c); COMP20929-S12 enrichie (illustration Casse-cou); MATH10620-S11 enrichie (diapos de séance); balado ENTR11000-S10 publié; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
-  "2026-11-21 : rien de nouveau côté séances; balado COMP20900-S11 publié; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
+  "2026-11-21 : rien de nouveau côté séances; balado COMP20900-S11 publié; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
+  "2026-11-22 : COMP20900-S8, S10 et S11 enrichies (guides CPA des chapitres 3061, 3400 et 1540); version annotée du ch. 1540 identique à la version déjà intégrée; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
  ]
 }
