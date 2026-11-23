@@ -346,13 +346,81 @@ function figsHtml(s, list) {
   if (!list || !list.length) return "";
   return `<div class="figs ${list.length > 1 ? "two" : ""}">${list.map((im) => `<figure><button type="button" data-fig="${esc(im.url)}" data-diapo="${esc(im.diapo || "")}" aria-label="Agrandir la diapo">${enc(im.url)}</button><figcaption>${md(im.legende || "")}${im.diapo ? ` (diapo ${esc(im.diapo)})` : ""}</figcaption></figure>`).join("")}</div>`;
 }
+
+/* ---------- Guide « Comprendre » (escaliers d'écarts, tableaux, exercices) ---------- */
+const mdl = (x) => md(x).replace(/\n/g, "<br>");
+const fdPill = (fd) => fd ? `<span class="pill ${fd === "D" ? "bad" : "ok"}">${fd === "D" ? "Défavorable" : "Favorable"}</span>` : `<span class="pill">Aucun écart</span>`;
+const slideBtn = (n) => n ? `<button class="lnk" type="button" data-slide="${esc(n)}">${ic("slides")}Voir la diapo ${esc(n)}</button>` : "";
+function escalierHtml(b) {
+  const vals = b.niveaux.map((x) => x.montant), lo = Math.min(...vals), hi = Math.max(...vals);
+  const w = (v) => (hi === lo ? 100 : 46 + (54 * (v - lo)) / (hi - lo)).toFixed(1);
+  const rows = b.niveaux.map((n, i) => {
+    const m = b.marches[i];
+    return `<div class="lvl" style="--i:${i}"><div class="lvt"><span class="lvn">${i + 1}</span><span><b>${md(n.nom)}</b><span class="lvf">${md(n.formule)}</span></span></div>
+      <div class="lvb"><i style="width:${w(n.montant)}%"></i><span>${esc(n.txt)}</span></div></div>
+      ${m ? `<div class="riser ${m.fd === "D" ? "d" : m.fd === "F" ? "f" : ""}" style="--i:${i}"><div class="rh"><b>${md(m.nom)}</b>${fdPill(m.fd)}<span class="amt">${esc(m.txt)}</span></div>
+      <div class="rf">${md(m.formule)}</div><div class="rc">${md(m.calcul)}</div></div>` : ""}`;
+  }).join("");
+  const det = b.detail ? tableHtml(b.detail.colonnes, b.detail.lignes) : "";
+  return `<p class="gintro">${md(b.intro)}</p>${det}<div class="stair">${rows}</div>
+    <div class="stot"><span>${md(b.total.nom)}</span><b>${esc(b.total.txt)}</b>${fdPill(b.total.fd)}</div>
+    <h3 class="gh3">Comment le lire</h3><ul class="gul">${b.lecture.map((p) => `<li>${md(p)}</li>`).join("")}</ul>
+    ${b.note ? `<p class="gnote">${md(b.note)}</p>` : ""}`;
+}
+function tableHtml(cols, lignes) {
+  return `<div class="gtab${cols.length >= 4 ? " large" : ""}"><table><thead><tr>${cols.map((c) => `<th>${md(c)}</th>`).join("")}</tr></thead><tbody>${lignes.map((l) => `<tr>${l.map((c) => `<td>${mdl(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+}
+function exerciceHtml(b) {
+  return `<div class="exen">${b.enonce.map((p) => `<p>${md(p)}</p>`).join("")}</div>
+  <ol class="exs">${b.etapes.map((e, k) => `<li class="ex" data-rep="${e.reponse}" data-fd="${e.fd || ""}" data-tol="${e.tol || 1}" data-u="${esc(e.unite)}">
+    <label for="ex-${b.id}-${k}">${md(e.q)}</label>
+    <div class="exrow"><span class="exin"><input id="ex-${b.id}-${k}" inputmode="decimal" autocomplete="off" placeholder="Ta réponse"><span>${esc(e.unite)}</span></span>
+      ${e.fd ? `<span class="fdsel" role="group" aria-label="Favorable ou défavorable"><button type="button" data-fdc="F" aria-pressed="false">F</button><button type="button" data-fdc="D" aria-pressed="false">D</button></span>` : ""}
+      <button class="btn sm pri" type="button" data-check>Vérifier</button><button class="lnk" type="button" data-show>Voir la réponse</button></div>
+    <div class="exres" hidden></div><p class="exexp" hidden>${md(e.explication)}</p></li>`).join("")}</ol>`;
+}
+function guideHtml(s) {
+  const g = s.guide || [];
+  const nav = `<nav class="gnav" aria-label="Sections du guide">${g.map((b) => `<button type="button" data-gjump="${esc(b.id)}">${esc(b.court || b.titre)}</button>`).join("")}</nav>`;
+  return nav + g.map((b) => {
+    let inner = "";
+    if (b.type === "texte") inner = `<ul class="gul">${b.points.map((p) => `<li>${md(p)}</li>`).join("")}</ul>`;
+    if (b.type === "tableau") inner = tableHtml(b.colonnes, b.lignes) + (b.note ? `<p class="gnote">${md(b.note)}</p>` : "");
+    if (b.type === "escalier") inner = escalierHtml(b);
+    if (b.type === "etapes") inner = `<ol class="gol">${b.etapes.map((p) => `<li>${md(p)}</li>`).join("")}</ol>`;
+    if (b.type === "exercice") inner = exerciceHtml(b);
+    const kind = { escalier: "Escalier", exercice: "Exercice" }[b.type] || "";
+    return `<section class="card sec gblock ${b.type}" id="g-${esc(b.id)}">${kind ? `<div class="gkind">${kind}</div>` : ""}<h2>${md(b.titre)}</h2>${inner}
+      ${b.source || b.diapo ? `<div class="gsrc">${b.source ? `<span>${esc(b.source)}</span>` : ""}${slideBtn(b.diapo)}</div>` : ""}</section>`;
+  }).join("");
+}
+const numFr = (x) => parseFloat(String(x).replace(/[\s  $]/g, "").replace(",", "."));
+const fmtFr = (x) => Number(x).toLocaleString("fr-CA", { maximumFractionDigits: 2 });
+function checkEx(li, reveal) {
+  const rep = +li.dataset.rep, fd = li.dataset.fd, tol = +li.dataset.tol, u = li.dataset.u;
+  const res = li.querySelector(".exres"), exp = li.querySelector(".exexp");
+  const v = numFr(li.querySelector("input").value);
+  const pick = li.querySelector("[data-fdc][aria-pressed=true]")?.dataset.fdc || "";
+  const sol = `${fmtFr(rep)} ${u}${fd ? " " + fd : ""}`;
+  if (reveal) { res.className = "exres show"; res.textContent = "Réponse : " + sol; }
+  else if (isNaN(v)) { res.className = "exres no"; res.textContent = "Entre un nombre (sans signe : choisis F ou D à côté)."; res.hidden = false; return; }
+  else {
+    const okv = Math.abs(Math.abs(v) - rep) <= tol, okf = !fd || pick === fd;
+    if (okv && okf) { res.className = "exres yes"; res.textContent = "Exact : " + sol; markActive(); }
+    else if (okv && !pick) { res.className = "exres no"; res.textContent = "Le montant est bon. Favorable ou défavorable?"; res.hidden = false; return; }
+    else if (okv) { res.className = "exres no"; res.textContent = `Le montant est bon, mais c'est ${fd === "D" ? "défavorable" : "favorable"}. Bonne réponse : ${sol}`; }
+    else { res.className = "exres no"; res.textContent = "Pas tout à fait. Bonne réponse : " + sol; }
+  }
+  res.hidden = false; exp.hidden = false;
+}
 function viewSeance(id, tab) {
   const s = S.seances.find((x) => x.id === id); if (!s || !ready(s)) return viewCourses();
   const c = course(s.cours), n = nDiapos(s), cov = coverOf(s);
   const eps = S.audios.filter((a) => (a.seances || []).includes(s.id));
-  const tabs = [["resume", "Résumé"], ...(n ? [["diapos", `Diapos (${n})`]] : []), ["fiche", "Fiche"], ["qcm", `QCM (${(s.qcm || []).length})`], ...(eps.length ? [["balado", "Balado"]] : [])];
-  if (!tabs.some(([k]) => k === tab)) tab = "resume";
+  const tabs = [...(s.guide?.length ? [["guide", "Comprendre"]] : []), ["resume", "Résumé"], ...(n ? [["diapos", `Diapos (${n})`]] : []), ["fiche", "Fiche"], ["qcm", `QCM (${(s.qcm || []).length})`], ...(eps.length ? [["balado", "Balado"]] : [])];
+  if (!tabs.some(([k]) => k === tab)) tab = tabs[0][0];
   let body = "";
+  if (tab === "guide") body = guideHtml(s);
   if (tab === "resume") body = (s.resume || []).map((x) => `<section class="card sec"><h2>${md(x.titre)}</h2>${figsHtml(s, x.images)}<ul>${(x.points || []).map((p) => `<li>${md(p)}</li>`).join("")}</ul></section>`).join("");
   if (tab === "diapos") body = `<div class="decks">${s.diapos.map((d, di) => `<div><div class="deckh"><h2>${esc(d.nom)}</h2>${d.lien ? `<a href="${esc(d.lien)}" target="_blank" rel="noopener">Original sur ZoneCours</a>` : ""}</div>
       <div class="thumbs">${d.images.map((u, k) => `<button type="button" data-open="${di}:${k}" aria-label="Diapo ${k + 1}">${enc(u)}<span>${k + 1}</span></button>`).join("")}</div></div>`).join("")}</div>`;
@@ -514,6 +582,11 @@ document.addEventListener("click", async (e) => {
   if (ds.lockout !== undefined) { await keyDel(); location.reload(); return; }
   if (ds.week !== undefined) { const w = +ds.week; S.weekOff = w === 0 ? 0 : S.weekOff + w; render(); return; }
   if (ds.day) { $("#j-" + ds.day)?.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+  if (ds.gjump) { document.getElementById("g-" + ds.gjump)?.scrollIntoView({ behavior: "smooth", block: "start" }); return; }
+  if (ds.slide && s) { const n = parseInt(ds.slide, 10); if (s.diapos?.length) openFromSeance(s, 0, n - 1); return; }
+  if (ds.fdc) { t.parentElement.querySelectorAll("[data-fdc]").forEach((b) => b.setAttribute("aria-pressed", b === t)); return; }
+  if (ds.check !== undefined) { checkEx(t.closest(".ex"), false); return; }
+  if (ds.show !== undefined) { checkEx(t.closest(".ex"), true); return; }
   if (ds.tab && s) { location.hash = `#s/${s.id}/${ds.tab}`; return; }
   if (ds.prog) { S.prog = ds.prog; render(); return; }
   if (ds.bal) { S.bal = ds.bal; render(); return; }
@@ -577,3 +650,7 @@ $("#lockform").addEventListener("submit", async (e) => {
   PRIV = await keyGet();
   if (PRIV) await start(); else { $("#loading").hidden = true; showLock(); }
 })();
+// Exercices : Entrée = Vérifier
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && e.target.matches?.(".ex input")) { e.preventDefault(); checkEx(e.target.closest(".ex"), false); }
+});
