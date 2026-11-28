@@ -1,6 +1,6 @@
 {
  "_note": "Suivi public non sensible (ids Canvas et numéros de séance) pour l'automatisation. Le contenu reste chiffré.",
- "derniereVerif": "2026-11-27T07:53:55-05:00",
+ "derniereVerif": "2026-11-28T07:50:30-05:00",
  "coursCanvas": {
   "COMP20900": 12354,
   "COMP20929": 10513,
@@ -576,6 +576,7 @@
   "2026-11-24 : COMP20929 préparation au final (TP2) intégrée : S08-S09 enrichie (SNOOPY, deux ateliers, rejets), S10-S11 enrichie (MITO, tous les écarts), S12 enrichie (coût cible MITO); solutions Excel non extraites; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
   "2026-11-25 : ENTR11000-S11 ajoutée (écosystèmes entrepreneuriaux, Poches & Fils, investissement par étapes; diapos; balado en production); COMP20900-S11 enrichie (solution complète de Sanfon, deux méthodes); agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
   "2026-11-26 : rien de nouveau côté séances; balado ENTR11000-S11 publié; agenda mis à jour; solution Excel S11 (16GC.1) de COMP20929 non extraite; 3 PDF COMP20929 S09 toujours non extraits",
-  "2026-11-27 : rien de nouveau côté séances; examen modèle final COMP20900 intégré (corrigé proposé dans S2, S3, S6 à S11 : régularisations CSI, amortissement, vente en ligne, flux de Chez Pierre); COMP20929-S10-S11 enrichie (sommaire officiel des formules d'écarts); directives du final MATH10620 dans l'agenda; solutions Excel non extraites; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
+  "2026-11-27 : rien de nouveau côté séances; examen modèle final COMP20900 intégré (corrigé proposé dans S2, S3, S6 à S11 : régularisations CSI, amortissement, vente en ligne, flux de Chez Pierre); COMP20929-S10-S11 enrichie (sommaire officiel des formules d'écarts); directives du final MATH10620 dans l'agenda; solutions Excel non extraites; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits",
+  "2026-11-28 : rien de nouveau côté séances; énoncé corrigé de Société G.O. inc. (COMP20900-S11) : seule correction, l'inversion des frais payés d'avance (3 080 $) et des placements (20 000 $) au bilan 2025, déjà conforme à la solution, séance inchangée; agenda mis à jour; 3 PDF COMP20929 S09 toujours non extraits"
  ]
 }
